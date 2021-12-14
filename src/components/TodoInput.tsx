@@ -36,7 +36,6 @@ export function TodoInput({ addTask }: TodoInputProps) {
         activeOpacity={0.7}
         style={styles.addButton}
         onPress={() => {
-          console.log(task);
           if(task !== '') {
             handleAddNewTask();
           }
