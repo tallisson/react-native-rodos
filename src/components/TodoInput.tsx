@@ -26,6 +26,7 @@ export function TodoInput({ addTask }: TodoInputProps) {
         onChangeText={setTask}
         onSubmitEditing={({ nativeEvent: { text } }) => {
           setTask(text);
+          handleAddNewTask();
         }}
         //TODO - use value, onChangeText and onSubmitEditing props
       />
