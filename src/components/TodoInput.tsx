@@ -26,7 +26,9 @@ export function TodoInput({ addTask }: TodoInputProps) {
         onChangeText={setTask}
         onSubmitEditing={({ nativeEvent: { text } }) => {
           setTask(text);
-          handleAddNewTask();
+          if(task) {
+            handleAddNewTask();
+          }
         }}
         //TODO - use value, onChangeText and onSubmitEditing props
       />
@@ -34,7 +36,11 @@ export function TodoInput({ addTask }: TodoInputProps) {
         testID="add-new-task-button"
         activeOpacity={0.7}
         style={styles.addButton}
-        onPress={() => handleAddNewTask()}
+        onPress={() => {
+          if(task) {
+            handleAddNewTask();
+          }
+        }}
         //TODO - onPress prop
       >
         <Icon name="chevron-right" size={24} color="#B2B2B2" />

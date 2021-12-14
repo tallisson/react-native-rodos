@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/Feather';
 import { ItemWrapper } from './ItemWrapper';
 import { showConfirmDelete } from './Alerts';
 
-import pencilIcon from '../assets/icons/pencil/pencil.png';
 import trashIcon from '../assets/icons/trash/trash.png';
 
 export interface Task {
