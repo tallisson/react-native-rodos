@@ -3,7 +3,7 @@ import { FlatList, Image, TouchableOpacity, View, Text, StyleSheet, FlatListProp
 import Icon from 'react-native-vector-icons/Feather';
 
 import { ItemWrapper } from './ItemWrapper';
-import { showConfirmDelete } from './Alerts';
+//import { showConfirmDelete } from './Alerts';
 
 import trashIcon from '../assets/icons/trash/trash.png';
 
@@ -67,8 +67,9 @@ export function TasksList({ tasks, toggleTaskDone, removeTask }: TasksListProps)
               style={{ paddingHorizontal: 24 }}
               //TODO - use onPress (remove task) prop
               onPress={() => {
-                const deleteTask = () => removeTask(item.id)
-                showConfirmDelete({ deleteTask });
+                /*const deleteTask = () => removeTask(item.id)
+                showConfirmDelete({ deleteTask });*/
+                removeTask(item.id);
               }}
             >
               <Image source={trashIcon} />

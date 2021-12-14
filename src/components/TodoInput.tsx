@@ -24,9 +24,8 @@ export function TodoInput({ addTask }: TodoInputProps) {
         selectionColor="#666666"
         value={task}
         onChangeText={setTask}
-        onSubmitEditing={({ nativeEvent: { text } }) => {
-          setTask(text);
-          if(task) {
+        onSubmitEditing={() => {          
+          if(task !== '') {
             handleAddNewTask();
           }
         }}
@@ -37,7 +36,8 @@ export function TodoInput({ addTask }: TodoInputProps) {
         activeOpacity={0.7}
         style={styles.addButton}
         onPress={() => {
-          if(task) {
+          console.log(task);
+          if(task !== '') {
             handleAddNewTask();
           }
         }}
