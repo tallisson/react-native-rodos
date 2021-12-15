@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { showAlertTaskExist, showConfirmDelete } from '../components/Alerts';
 
 import { Header } from '../components/Header';
 import { Task, TasksList } from '../components/TasksList';
@@ -10,18 +11,22 @@ export function Home() {
 
   function handleAddTask(newTaskTitle: string) {
     //TODO - add new task
-    const dataTask: Task = {
-      id: tasks.length,
-      title: newTaskTitle,
-      done: false
-    };
-    setTasks(oldState => [...oldState, dataTask]);
+    if(!tasks.find(task => task.title === newTaskTitle)) { 
+      const dataTask: Task = {
+        id: tasks.length,
+        title: newTaskTitle,
+        done: false
+      };
+      setTasks(oldState => [...oldState, dataTask]);
+    } else {
+      showAlertTaskExist();
+    }
   }
 
-  function handleToggleTaskDone(id: number) {
+  function handleToggleTaskDone(taskId: number) {
     //TODO - toggle task done if exists
     setTasks(oldState => oldState.map(task => {
-      if(task.id === id) {
+      if(task.id === taskId) {
         task.done = !task.done;
       }
       return task;
@@ -30,7 +35,17 @@ export function Home() {
 
   function handleRemoveTask(id: number) {
     //TODO - remove task from state
-    setTasks(oldState => oldState.filter(task => task.id !== id));
+    const removeTask = () => setTasks(oldState => oldState.filter(task => task.id !== id));
+    showConfirmDelete({ removeTask });    
+  }
+
+  function handleEditTask(taskId: number, taskNewTitle: string) {
+    setTasks(oldState => oldState.map(task => {
+      if(task.id === taskId) {
+        task.title = taskNewTitle;
+      }
+      return task;
+    }));
   }
 
   return (
@@ -43,6 +58,7 @@ export function Home() {
         tasks={tasks} 
         toggleTaskDone={handleToggleTaskDone}
         removeTask={handleRemoveTask}
+        editTask={handleEditTask}
       />
     </View>
   )

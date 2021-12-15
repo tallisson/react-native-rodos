@@ -1,21 +1,33 @@
 import { Alert } from "react-native";
 
 interface ConfirmDeleteProps {
-  deleteTask: () => void
+  removeTask: () => void
 }
 
-export function showConfirmDelete({ deleteTask }: ConfirmDeleteProps) {
+export function showConfirmDelete({ removeTask }: ConfirmDeleteProps) {
   return Alert.alert(
-    'Deletar Task',
-    'Você tem certeza que deseja remover essa Task?',
+    'Remover Item',
+    'Tem certeza que você deseja remover esse item?',
     [
-      {
-        text: 'Sim',
-        onPress: () => deleteTask(),
-      },
       {
         text: 'Não',
       },
+      {
+        text: 'Sim',
+        onPress: () => removeTask(),
+      },
+    ]
+  );
+}
+
+export function showAlertTaskExist() {
+  return Alert.alert(
+    'Task já cadastrada',
+    'Você não pode cadastrar uma task com o mesmo nome!',
+    [
+      {
+        text: 'Ok',
+      }
     ]
   );
 }
